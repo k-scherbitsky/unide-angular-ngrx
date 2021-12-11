@@ -1,0 +1,8 @@
+<h1 class="my-6">Unide starter task</h1>
+<ngrx-board-ui
+  (add)="add($event)"
+  (delete)="delete($event)"
+  (update)="update($event)"
+  [stories]="(stories$ | async) || []"
+>
+</ngrx-board-ui>

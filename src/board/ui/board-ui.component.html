@@ -1,0 +1,34 @@
+<div class="flex justify-center flex-wrap" cdkDropListGroup>
+  <div
+    *ngFor="let storyColumn of stories; let i = index"
+    class="list-container rounded shadow-lg overflow-hidden px-4 py-2"
+  >
+  <div class="flex items-center justify-between mb-2">
+    <h1 class="mr-2">Column {{ i }}</h1>
+
+    <button class="tw-blue-btn" (click)="addNew(i, storyColumn)">Add New</button>
+  </div>
+    <div
+      (cdkDropListDropped)="dropStory($event, i)"
+      [cdkDropListData]="storyColumn"
+      cdkDropList
+      class="drag-list mb-2 rounded-md"
+      id="{{ i }}"
+    >
+      <div
+        *ngFor="let story of storyColumn"
+        [cdkDragData]="story"
+        cdkDrag
+        class="drag-box mb-2 rounded-lg"
+      >
+        <input
+          #storyTitle
+          (blur)="updateStory(story, storyTitle.value)"
+          [ngModel]="story.title"
+        />
+        -
+        <button (click)="delete.emit(story.storyId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
