@@ -24,8 +24,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
     let storyId: string | undefined;
 
-    if (req.method === 'GET' && req.url.includes('stories')) {
-      return of(new HttpResponse({ status: 200, body: Object.values(data) }));
+    if (req.method === 'GET' && req.url.includes('people')) {
+      return next.handle(req);
     }
 
     switch (req.method) {

@@ -6,10 +6,11 @@ export const selectStories = createSelector<Story[], [Story[]], Story[][]>(
   (stories: Stories) =>
     stories.reduce<Stories[]>(
       (prev, cur) => {
-        prev[cur.column].push(cur);
+        const cloneObj = {...cur, order: prev[cur.column].length};
+
+        prev[cur.column].push(cloneObj);
 
         prev[cur.column].sort((a, b) => a.order - b.order);
-
         return prev;
       },
       [[], [], [], []]
